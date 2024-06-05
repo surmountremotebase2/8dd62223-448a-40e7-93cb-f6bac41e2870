@@ -1,1 +1,1 @@
-{"interval": "", "assets": ["MSFT"], "strategy": []}
+{"groups": {}, "interval": "1hour", "assets": ["MSFT"], "strategy": [{"type": "IF", "conditions": [{"type": "BINARY", "first": {"name": "PRICE", "args": {"ticker": "MSFT"}}, "second": {"name": "constant", "args": {"length": "10", "value": "1000"}}, "comp": ">", "operator": ""}], "if_action": {"type": "ACTION", "steps": [{"action": "allocation", "amount": 100}]}, "else_action": {"type": "ACTION", "steps": []}}]}
