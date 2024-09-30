@@ -1,1 +1,1 @@
-{"interval": "", "assets": ["AAPL"], "strategy": []}
+{"interval": "1hour", "assets": ["AAPL", "MSFT"], "strategy": [{"type": "IF", "conditions": [{"type": "BINARY", "first": {"name": "RSI", "args": {"ticker": "AAPL", "length": 20}, "advanced": {}}, "second": {"name": "constant", "args": {"value": 60}}, "comp": ">", "operator": ""}], "if_action": {"type": "ACTION", "steps": [{"action": "allocation", "asset": null}]}, "else_action": {"type": "ACTION", "steps": []}}]}
