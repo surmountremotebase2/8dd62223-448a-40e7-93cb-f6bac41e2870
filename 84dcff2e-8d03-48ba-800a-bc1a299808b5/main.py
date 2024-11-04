@@ -15,10 +15,10 @@ class TradingStrategy(Strategy):
         return "1min"
 
     def run(self, data_functions):
-        choice = random.choice(self.assets())
+        choice = random.choice(self.assets)
 
         allocation = {}
-        for a in self.assets():
+        for a in self.assets:
             allocation[a] = 0
 
         allocation[choice] = 100
