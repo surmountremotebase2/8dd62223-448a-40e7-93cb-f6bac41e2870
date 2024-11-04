@@ -1,29 +1,27 @@
 #Type code here
 from surmount.base_class import Strategy, TargetAllocation, backtest
 from surmount.technical_indicators import RSI, EMA, SMA, MACD, MFI, BB
+import random
+import json
 
 class TradingStrategy(Strategy):
 
     @property
     def assets(self):
-        return ["SPY"]
+        return ["AAPL", "MSFT"]
 
     @property
     def interval(self):
         return "1min"
 
     def run(self, data_functions):
-        data = data_functions["ohlcv"]
+        choice = random.choice(self.assets())
 
-        spy_20_ma = SMA("SPY", data, 20)
-        spy_10_ma = SMA("SPY", data, 10)
-        spy_10_rsi = RSI("SPY", data, 10)
+        allocation = {}
+        for a in self.assets():
+            allocation[a] = 0
 
-        if None in [spy_20_ma, spy_10_ma, spy_10_rsi]:
-            return None
+        allocation[choice] = 100
 
-        spy_stake = 0
-        if spy_10_rsi[-1]<60 and spy_10_ma[-1]>spy_20_ma[-1]:
-            spy_stake = 1
-
-        return TargetAllocation({"SPY": spy_stake})
+        print(f"setting allocation {json.dumps(allocation)}")
+        return TargetAllocation(allocation)
