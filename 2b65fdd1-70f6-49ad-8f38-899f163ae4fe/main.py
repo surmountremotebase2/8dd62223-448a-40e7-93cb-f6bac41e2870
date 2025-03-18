@@ -20,9 +20,9 @@ class TradingStrategy(Strategy):
         return "1hour"
     
     def __init__(self):
-      self.count = 0
-      self.buy_price = 0
-      self.watermark = 0
+        self.count = 0
+        self.buy_price = 0
+        self.watermark = 0
 
     def run(self, data):
         #allocation_dict = {"BTCUSD": 1.0}
