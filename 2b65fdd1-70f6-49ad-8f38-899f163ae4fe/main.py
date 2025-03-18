@@ -77,4 +77,4 @@ class TradingStrategy(Strategy):
             allocation_dict = TargetAllocation({})
 
         # Return the target allocation based on our logic
-		return TargetAllocation(allocation_dict)
+        return TargetAllocation(allocation_dict)
