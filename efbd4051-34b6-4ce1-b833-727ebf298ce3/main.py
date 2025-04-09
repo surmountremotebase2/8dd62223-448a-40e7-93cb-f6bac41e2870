@@ -4,6 +4,7 @@ from surmount.technical_indicators import SMA
 from surmount.logging import log
 import pandas as pd 
 import numpy as np 
+import json
 
 class TradingStrategy(Strategy):
     @property
@@ -47,20 +48,20 @@ class TradingStrategy(Strategy):
         #log("Checking trends")
         if upward_trend < downward_trend:
             allocation_dict = {"SPXS": 0.0}
-            #log("Upward trend")
+            print("in upward trend")
             if spxl_delta < spy_delta * 1.15:
                 allocation_dict = {"SPXL": 0.0}
             else:
                 allocation_dict = {"SPXL": 1.0}
         elif upward_trend > downward_trend:
-            #log("downward trend")
+            print("in downward trend")
             allocation_dict = {"SPXL": 0.0}
             if spxs_delta < abs(spy_delta * 1.15):
                 allocation_dict = {"SPXS": 0.0}
             else:
                 allocation_dict = {"SPXS": 1.0}
         else:
-            #log("In the else")
+            log("In the else target allocation -> {}")
             return TargetAllocation({})
 
         '''if sma_SPXL[-1] < sma_SPY[-1]:
@@ -82,4 +83,5 @@ class TradingStrategy(Strategy):
             allocation_dict = TargetAllocation({})
 
         # Return the target allocation based on our logic
+        print(f"Here is the target allocation being sent -> {json.dumps(allocation_dict)}")
         return TargetAllocation(allocation_dict)
