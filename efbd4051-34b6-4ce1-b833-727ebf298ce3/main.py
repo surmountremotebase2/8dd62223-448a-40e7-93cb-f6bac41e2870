@@ -47,22 +47,22 @@ class TradingStrategy(Strategy):
 
         #log("Checking trends")
         if upward_trend < downward_trend:
-            allocation_dict = {"SPXS": 0.0}
+            allocation_dict = {"SPXS": 0.02}
             print("in upward trend")
             if spxl_delta < spy_delta * 1.15:
-                allocation_dict = {"SPXL": 0.0}
+                allocation_dict = {"SPXL": 0.02}
             else:
                 allocation_dict = {"SPXL": 1.0}
         elif upward_trend > downward_trend:
             print("in downward trend")
-            allocation_dict = {"SPXL": 0.0}
+            allocation_dict = {"SPXL": 0.02}
             if spxs_delta < abs(spy_delta * 1.15):
-                allocation_dict = {"SPXS": 0.0}
+                allocation_dict = {"SPXS": 0.02}
             else:
                 allocation_dict = {"SPXS": 1.0}
         else:
             print("In the else target allocation -> {}")
-            return TargetAllocation({})
+            allocation_dict = {"SPXS": 0.02}
 
         '''if sma_SPXL[-1] < sma_SPY[-1]:
             #log("SPXL underperforming SPY, buying SPXL.")
@@ -80,7 +80,7 @@ class TradingStrategy(Strategy):
         '''
         
         if not allocation_dict:
-            allocation_dict = TargetAllocation({})
+            allocation_dict = TargetAllocation({"SPXS": 0.02})
 
         # Return the target allocation based on our logic
         print(f"Here is the target allocation being sent -> {json.dumps(allocation_dict)}")
